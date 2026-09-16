@@ -1,0 +1,302 @@
+<title>Forty Gold Calls</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#F2F4F3;--surface:#FFFFFF;--ink:#1E2926;--muted:#5C6965;--line:#D8DEDB;--line-strong:#B9C3BF;
+  --alex:#2B6E72;--alex-soft:#E4F0EF;--mom:#8B5A2B;--mom-soft:#F4EBE1;
+  --think:#F7F9F8;--think-rule:#9FB3AE;--think-ink:#2E3A37;
+  --r-now:#5B6B9E;--r-bring:#2B6E72;--r-ask:#7A5C9E;--r-state:#8A6D1E;--r-heard:#5B6B9E;--r-decide:#A63A2E;--r-say:#8A6D1E;--r-then:#2F7D4F;--r-answer:#2B6E72;
+  --chip-ink:#3E4A54;--chip:#E6EAEE;--flag:#B5471B;--flag-soft:#FBE9E1;
+  --nurse:#8F6210;--nurse-soft:#FBEFD6;--e911:#A63A2E;--e911-soft:#F9E1DD;
+  --good:#2F7D4F;--good-soft:#E3F1E8;--warn:#8F6210;--warn-soft:#FBEFD6;--bad:#A63A2E;--bad-soft:#F9E1DD;
+  --focus:#2B6E72;--shadow:0 1px 2px rgba(30,41,38,.06),0 8px 24px -12px rgba(30,41,38,.18);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --ground:#141918;--surface:#1C2321;--ink:#E6ECE9;--muted:#9BA8A3;--line:#2E3835;--line-strong:#46534F;
+  --alex:#83C6C6;--alex-soft:#1F3536;--mom:#E0B07E;--mom-soft:#3A2C1F;
+  --think:#1A2220;--think-rule:#4F6661;--think-ink:#D3DCD8;
+  --r-now:#A9B6E0;--r-bring:#83C6C6;--r-ask:#C4A9E6;--r-state:#E2C36E;--r-heard:#A9B6E0;--r-decide:#F09A8E;--r-say:#E2C36E;--r-then:#8FD3A9;--r-answer:#83C6C6;
+  --chip-ink:#C7D1D8;--chip:#2C363E;--flag:#F0895E;--flag-soft:#3E2418;
+  --nurse:#F0C066;--nurse-soft:#3A2E14;--e911:#F09A8E;--e911-soft:#3F2320;
+  --good:#8FD3A9;--good-soft:#1E3327;--warn:#F0C066;--warn-soft:#3A2E14;--bad:#F09A8E;--bad-soft:#3F2320;
+  --focus:#83C6C6;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.6);
+}}
+:root[data-theme="dark"]{
+  --ground:#141918;--surface:#1C2321;--ink:#E6ECE9;--muted:#9BA8A3;--line:#2E3835;--line-strong:#46534F;
+  --alex:#83C6C6;--alex-soft:#1F3536;--mom:#E0B07E;--mom-soft:#3A2C1F;
+  --think:#1A2220;--think-rule:#4F6661;--think-ink:#D3DCD8;
+  --r-now:#A9B6E0;--r-bring:#83C6C6;--r-ask:#C4A9E6;--r-state:#E2C36E;--r-heard:#A9B6E0;--r-decide:#F09A8E;--r-say:#E2C36E;--r-then:#8FD3A9;--r-answer:#83C6C6;
+  --chip-ink:#C7D1D8;--chip:#2C363E;--flag:#F0895E;--flag-soft:#3E2418;
+  --nurse:#F0C066;--nurse-soft:#3A2E14;--e911:#F09A8E;--e911-soft:#3F2320;
+  --good:#8FD3A9;--good-soft:#1E3327;--warn:#F0C066;--warn-soft:#3A2E14;--bad:#F09A8E;--bad-soft:#3F2320;
+  --focus:#83C6C6;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+html{font-size:16px;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--ground);color:var(--ink);font-family:"Source Sans 3",system-ui,"Segoe UI",Roboto,sans-serif;line-height:1.5;padding-inline:20px;padding-block:0 80px;margin:0}
+h1,h2,h3{font-family:"Newsreader",Georgia,"Times New Roman",serif;font-weight:500;text-wrap:balance;margin:0}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace}
+a{color:var(--alex)}
+.wrap{max-width:1180px;margin:0 auto}
+header.top{padding-block:40px 24px;border-bottom:1px solid var(--line)}
+header.top h1{font-size:2.6rem;line-height:1.05;letter-spacing:-.01em}
+header.top .sub{font-size:1.15rem;color:var(--muted);max-width:62ch;margin-top:10px}
+.eyebrow{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.layout{display:grid;grid-template-columns:290px minmax(0,1fr);gap:40px;padding-top:28px}
+@media (max-width:860px){.layout{grid-template-columns:1fr;gap:20px}}
+nav.side{position:sticky;top:16px;align-self:start;max-height:calc(100vh - 32px);overflow:auto;padding-right:8px}
+@media (max-width:860px){nav.side{position:static;max-height:none}}
+nav.side h3{font-size:.95rem;color:var(--muted);margin:16px 0 6px;font-family:"Source Sans 3",sans-serif;font-weight:600}
+nav.side ol{list-style:none;padding:0;margin:0}
+nav.side li a{display:flex;align-items:baseline;gap:8px;padding:5px 6px;border-radius:6px;text-decoration:none;color:var(--ink);font-size:.93rem}
+nav.side li a:hover{background:var(--surface)}
+nav.side .id{width:38px;flex:none;color:var(--muted);font-size:.8rem}
+nav.side .seat{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);letter-spacing:.04em;flex:none}
+nav.side .cnt{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--muted);flex:none;min-width:38px;text-align:right}
+nav.side .cnt.done{color:var(--good)}
+.progress{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:10px}
+.progress .big{font-family:"Newsreader",serif;font-size:1.6rem;line-height:1.1}
+.progress .bar{height:6px;border-radius:3px;background:var(--line);margin:8px 0 6px;overflow:hidden}
+.progress .bar i{display:block;height:100%;background:var(--good);width:0}
+.progress .hint{font-size:.85rem;color:var(--muted)}
+button.btn{font:inherit;font-size:.9rem;font-weight:600;padding:6px 14px;border-radius:8px;border:1px solid var(--alex);background:var(--alex);color:#fff;cursor:pointer}
+button.btn.quiet{background:var(--surface);color:var(--alex)}
+button.btn.small{font-size:.82rem;padding:4px 10px}
+button.btn[disabled]{opacity:.5;cursor:default}
+button:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+main{min-width:0;max-width:78ch}
+section.howto{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px 24px;box-shadow:var(--shadow);margin-bottom:36px}
+section.howto h2{font-size:1.5rem;margin-bottom:8px}
+section.howto p{margin:.4rem 0}
+section.howto h4{margin:16px 0 6px;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.legend{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:.93rem;margin-top:8px}
+.legend .k{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;white-space:nowrap;padding-top:3px}
+.note{font-size:.9rem;color:var(--muted);border-left:3px solid var(--line-strong);padding-left:12px;margin-top:14px}
+article.call{margin-bottom:64px;scroll-margin-top:16px}
+.callhead{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;align-items:baseline;border-bottom:2px solid var(--line-strong);padding-bottom:12px;margin-bottom:18px}
+.callhead .cid{font-family:"IBM Plex Mono",monospace;font-size:1.1rem;color:var(--muted)}
+.callhead h2{font-size:1.7rem;line-height:1.15}
+.callhead .meta{grid-column:2;display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.9rem;color:var(--muted)}
+.badge{display:inline-block;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--chip);color:var(--chip-ink)}
+.dayline{grid-column:2;font-size:.95rem;color:var(--ink);margin-top:2px}
+.dayline span{color:var(--muted)}
+.turns{display:flex;flex-direction:column;gap:26px}
+.turn{display:grid;grid-template-columns:1fr;gap:10px;scroll-margin-top:16px}
+.turnno{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--muted);letter-spacing:.06em}
+.line{padding:10px 14px 10px 16px;border-left:3px solid;border-radius:0 8px 8px 0;font-size:1.02rem}
+.line .who{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-bottom:2px}
+.mom{border-color:var(--mom);background:var(--mom-soft)}.mom .who{color:var(--mom)}
+.alex{border-color:var(--alex);background:var(--alex-soft)}.alex .who{color:var(--alex)}
+.tok{font-family:"IBM Plex Mono",monospace;font-size:.78rem;padding:1px 7px;border-radius:5px;margin-right:6px;vertical-align:1px}
+.tok.NURSE{background:var(--nurse-soft);color:var(--nurse)}.tok.e911{background:var(--e911-soft);color:var(--e911)}.tok.mood{background:var(--chip);color:var(--chip-ink)}
+.think{background:var(--think);border:1px solid var(--line);border-left:3px dashed var(--think-rule);border-radius:0 8px 8px 0;padding:10px 14px 12px 16px}
+.think .who{display:flex;justify-content:space-between;align-items:baseline;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--muted);margin-bottom:8px}
+.think .mode{letter-spacing:.04em;text-transform:none;font-weight:500}
+.rrow{display:grid;grid-template-columns:minmax(150px,auto) 1fr;gap:2px 14px;padding:5px 0;border-top:1px solid var(--line);font-size:.95rem;align-items:baseline}
+.rrow:first-of-type{border-top:0}
+@media (max-width:560px){.rrow{grid-template-columns:1fr;gap:0}}
+.rrow .rk{font-size:.78rem;font-weight:600;letter-spacing:.02em;padding-left:9px;border-left:3px solid currentColor;line-height:1.3}
+.rrow .rv{color:var(--think-ink)}
+.rk.now,.rk.heard{color:var(--r-now)}.rk.bring,.rk.answer{color:var(--r-bring)}.rk.ask{color:var(--r-ask)}.rk.state,.rk.say{color:var(--r-state)}.rk.decide{color:var(--r-decide)}.rk.then{color:var(--r-then)}.rk.other{color:var(--muted)}
+.flags{margin-top:6px;display:flex;gap:6px;flex-wrap:wrap}
+.flag{font-size:.76rem;color:var(--flag);background:var(--flag-soft);padding:1px 8px;border-radius:5px}
+.runtime{display:flex;justify-content:center;margin:2px 0}
+.runtime span{font-family:"IBM Plex Mono",monospace;font-size:.8rem;color:var(--chip-ink);background:var(--chip);border:1px solid var(--line);padding:3px 12px;border-radius:999px}
+.hang{font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--muted)}
+.unit{border:1px solid var(--line-strong);border-radius:10px;padding:10px 12px;background:var(--surface);display:flex;flex-direction:column;gap:8px}
+.unit .uh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.unit .ut{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--muted)}
+.quick{display:flex;gap:8px;flex-wrap:wrap}
+.quick button{font:inherit;font-size:.86rem;padding:5px 12px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);cursor:pointer}
+.quick button.on.ok{background:var(--good-soft);border-color:var(--good);color:var(--good)}
+.quick button.on.voice{background:var(--warn-soft);border-color:var(--warn);color:var(--warn)}
+.quick button.on.wrong{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+textarea{width:100%;min-height:64px;border:1px solid var(--line-strong);border-radius:8px;padding:8px 10px;font:inherit;font-size:.95rem;background:var(--surface);color:var(--ink);resize:vertical}
+.unit .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.unit .st{font-size:.85rem;color:var(--muted)}
+.unit.saved{background:var(--good-soft);border-color:var(--good)}
+.unit.saved .ut{color:var(--good)}
+.unit.saved .body{font-size:.95rem;white-space:pre-wrap}
+.unit.saved .verdict{font-family:"IBM Plex Mono",monospace;font-size:.78rem;padding:1px 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line)}
+.owner{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;box-shadow:var(--shadow);margin-bottom:36px}
+.owner h2{font-size:1.3rem;margin-bottom:6px}
+.owner table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+.owner th,.owner td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--line)}
+.owner th{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.othernotes{margin-top:8px;display:flex;flex-direction:column;gap:6px}
+.onote{font-size:.9rem;border-left:3px solid var(--line-strong);padding-left:10px}
+.onote .by{font-weight:600}
+.onote .v{font-family:"IBM Plex Mono",monospace;font-size:.76rem;margin-left:6px;color:var(--muted)}
+.jump{position:fixed;right:20px;bottom:20px;z-index:5;box-shadow:var(--shadow)}
+@media (max-width:860px){.jump{right:12px;bottom:12px}}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">Alex &amp; Mom · gold standard for the next training round</div>
+  <h1>Forty Gold Calls</h1>
+  <p class="sub">Whole phone calls between a son and his mother, who has dementia, written to the standard the next model will be trained to. We are asking you to read the son's <em>reasoning</em> as closely as his words, one turn at a time, and leave a note on each turn.</p>
+</header>
+
+<div class="layout">
+<nav class="side" aria-label="Calls">
+  <div class="eyebrow">Your progress</div>
+  <div class="progress" id="progress"><div class="big" id="pbig">—</div><div class="bar"><i id="pbar"></i></div><div class="hint" id="phint">Your notes are saved to this link.</div><div class="hint" style="margin-top:6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span id="whoami"></span><button class="btn quiet small" type="button" id="namebtn">Set my name</button></div></div>
+  <div class="eyebrow" style="margin-top:18px">Calls</div>
+  <p style="font-size:.82rem;color:var(--muted);margin:6px 0 0">Three writers drafted the forty — Astra (14), Grok (14), Kimi (12). The count on each line is turns you have noted out of turns in the call.</p>
+  <div id="navlist"></div>
+</nav>
+
+<main>
+<section class="howto" id="howto">
+  <h2>How to read a call, and what we need from you</h2>
+  <p>Each call is a phone conversation. The AI plays <strong>Alex</strong> (or Tony, in the second family). His mother is simulated for these examples, but her lines are written to be what a real mother with dementia says: she drifts, repeats, loses a word, remembers her husband died and then asks where he is. None of that is a mistake. Her lines are context; <strong>the unit you are judging is one of his turns</strong> — his reasoning and what he then says.</p>
+  <h4>The lines</h4>
+  <div class="legend">
+    <span class="k" style="color:var(--mom)">Mom</span><span>what she says.</span>
+    <span class="k" style="color:var(--think-rule)">Reasoning</span><span>his private thinking before he speaks, written out in plain words. The model is trained to think in this shape; she never hears it.</span>
+    <span class="k" style="color:var(--alex)">Alex</span><span>what he actually says. A small tag in front is his tone of voice; <span class="tok NURSE">[NURSE]</span> or <span class="tok e911">[911]</span> in front is an action the service takes silently — she never hears the tag.</span>
+    <span class="k" style="color:var(--chip-ink)">service</span><span>a grey chip between turns is a message from the service: the nurse is now on the line, the call failed, 911 is active, the real caregiver is taking over.</span>
+  </div>
+  <h4>What to do on each of his turns</h4>
+  <p>Under every turn there is a box for that turn. Tap one of the three quick answers — <strong>Fine</strong>, <strong>Not how a son would say it</strong>, <strong>Wrong</strong> — and, whenever you have something to say, write or dictate it in the box (any dictation software works there). Then <strong>Save</strong>. A saved note is locked, so you can move on without second-guessing; if you must change something, leave it and mention it in the next turn's note. <strong>Fine</strong> with no text is a complete answer and counts as done.</p>
+  <p>This link is yours alone: nobody sees anyone else's notes, and your notes are kept against this link, so bookmark it and come back to the same address. The counter on the left shows what you have done and what is left, and the <strong>Next turn to answer</strong> button takes you to the next one whenever you return.</p>
+  <p>The decisions we most need a clinical eye on: when a nurse is enough and when it must be 911; the stretch where she is waiting and no one has joined yet; “I'm fine now, call them off”; talk of not wanting to live; a person she sees outside; wanting to go to the office or back to her old home; the pills.</p>
+  <p class="note">Small ⚑ marks are notes from an automatic checker about the private reasoning (it copied her words, it drafted the spoken sentence). They are for us, not for you. <span id="dbstatus"></span></p>
+</section>
+
+
+<div id="calls"></div>
+</main>
+</div>
+</div>
+<button class="btn jump" type="button" id="jump" hidden>Next turn to answer ↓</button>
+
+<script>
+const DATA = /*__DATA__*/null;
+const BOOT = /*__BOOT__*/null;
+const LOTNAMES = {"ordinary-lead":"An ordinary morning — he leads","ordinary-memory-in-passing":"The wall in the old kitchen — her husband in passing","ordinary-word-finding":"Pelmeni, and the word for the thing with holes","ordinary-neighbour":"The neighbour's dog","ordinary-holidays":"Rosh Hashanah, coming or gone","ordinary-empty-day-line":"“What did you do today?” — with nothing to tell","ordinary-memory-of-him":"Her memories of him as a boy","loop-time-and-miriam":"What time is it — asked, and asked again","loop-when-does-lucas-come":"When does Lucas come home — asked again","repair-after-callout":"“You're a parrot today”","runtime-pending-then-connected":"Her legs on the stairs — the nurse takes a while","runtime-failed-then-connected":"Dizzy spells — the nurse line fails, then connects","caregiver-handoff-ordinary":"The real Alex takes over the call","caregiver-handoff-during-nurse":"A fall in the hallway — the caregiver takes over","911-chest-fine-now":"Chest tight like a band — “I'm fine now”","911-breath-fine-now":"Can't catch her breath — “it passed”","911-smoke":"Smoke from the stove","911-fall-cannot-get-up":"On the floor by the bed","despair-passive-nurse":"“Sometimes I don't want to wake up”","despair-means-named-nurse":"“I have the pills right here”","despair-attempt-in-progress-911":"An attempt in progress","person-outside-nurse":"A man at the window","person-inside-911":"A voice inside the house","aide-knocks-no-token":"Dora knocks","office-departure-nurse":"“I have to get to the office”","drive-to-long-beach-nurse":"Driving to Long Beach","snow-walk-nurse":"Bread in the first snow","dose-nurse":"Did I take my pills?","theft-search-together":"The rings are gone","bank-and-money":"A letter from the bank","identity-challenge":"“You're not my son”","goodbye-taper":"Saying goodbye three times","angry-at-alex":"“You never visit”","husband-whereabouts-then-memory":"Where is Joaquim — and later, since he died"};
+const FAMILY = {zhanna:"Zhanna & Alex (Sasha)", maria:"Maria & Tony — second family"};
+const LABEL = {Now:["What she's doing or feeling, in his words","now"],Bring:["The one thing he adds that she did not say","bring"],Ask:["The question he hands her, if any","ask"],State:["Where the call stands — is help active, has the nurse joined, how long has she been waiting","state"],Heard:["What he heard — the trigger, in his words","heard"],Decide:["The decision — nurse, 911, hold what is active, or nothing — and the one fact that decides it","decide"],Say:["The line the service requires him to say, if any","say"],Then:["One precaution, or one comfort","then"],Answer:["The rest of what she asked, still owed to her","answer"]};
+const QUICK = [["ok","Fine"],["voice","Not how a son would say it"],["wrong","Wrong"]];
+const $ = (s, r=document) => r.querySelector(s);
+const el = (t, a={}, ...k) => { const e=document.createElement(t); for (const [n,v] of Object.entries(a)) { if (n==="class") e.className=v; else if (n==="text") e.textContent=v; else if (n.startsWith("on")) e.addEventListener(n.slice(2), v); else if (v!==false&&v!=null) e.setAttribute(n,v===true?"":v);} for (const c of k) if (c!=null) e.append(c); return e; };
+const calls = DATA.calls, byId = Object.fromEntries(calls.map(c=>[c.id,c]));
+const TOTAL = BOOT.total;
+const TOKEN = BOOT.token;
+let myName = BOOT.name || "", mine = {};
+const key=(c,n)=>c+"__t"+n;
+
+async function api(path, body){
+  const r = await fetch(path, body ? {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(body)} : undefined);
+  if(!r.ok){ let m=""; try{ m=(await r.json()).detail||""; }catch(e){} const err=new Error(m||("HTTP "+r.status)); err.status=r.status; throw err; }
+  return r.json();
+}
+function tokenChip(tags){
+  if(!tags||!tags.length) return null;
+  const f=document.createDocumentFragment();
+  if(tags[0]==="NURSE"||tags[0]==="911"){ f.append(el("span",{class:"tok "+(tags[0]==="911"?"e911":"NURSE"),text:"["+tags[0]+"]"})); tags.slice(1).forEach(t=>f.append(el("span",{class:"tok mood",text:"["+t+"]"}))); }
+  else tags.forEach(t=>f.append(el("span",{class:"tok mood",text:"["+t+"]"})));
+  return f;
+}
+function unitsOf(c){ return c.turns.filter(t=>t.alex!=null&&!t.hangup); }
+function doneIn(c){ return unitsOf(c).filter(t=>mine[key(c.id,t.n)]).length; }
+function renderNav(){
+  const box=$("#navlist"); box.textContent="";
+  for(const g of DATA.groups){
+    box.append(el("h3",{text:g.title}));
+    const ol=el("ol");
+    for(const id of g.ids){ const c=byId[id]; const d=doneIn(c), u=unitsOf(c).length;
+      ol.append(el("li",{}, el("a",{href:"#"+id}, el("span",{class:"id mono",text:id}), el("span",{text:LOTNAMES[c.lot]||c.lot}), el("span",{class:"seat",text:c.seat,title:"written by "+c.seat}), el("span",{class:"cnt"+(d>=u?" done":""),text:d+"/"+u}))));
+    }
+    box.append(ol);
+  }
+  const done=Object.keys(mine).length;
+  $("#pbig").textContent=done+" of "+TOTAL+" turns";
+  $("#pbar").style.width=Math.round(100*done/TOTAL)+"%";
+  $("#phint").textContent = done>=TOTAL ? "All done — thank you." : (TOTAL-done)+" to go. Your notes are saved under "+(myName||"your link")+"; come back to this same link any time.";
+  $("#jump").hidden = done>=TOTAL;
+}
+function nextUndone(){ for(const g of DATA.groups) for(const id of g.ids){ const c=byId[id]; for(const t of unitsOf(c)) if(!mine[key(id,t.n)]) return "u-"+id+"-"+t.n; } return null; }
+function reasoning(t){
+  const th=el("div",{class:"think"});
+  const isProblem=t.think.some(([k])=>k==="State"||k==="Decide");
+  th.append(el("div",{class:"who"}, el("span",{text:"His reasoning, before he speaks"}), el("span",{class:"mode",text:isProblem?"a problem turn — safety is weighed first":"an ordinary turn"})));
+  for(const [k,v] of t.think){
+    const lab=LABEL[k];
+    if(lab) th.append(el("div",{class:"rrow"}, el("div",{class:"rk "+lab[1],text:lab[0]}), el("div",{class:"rv",text:v})));
+    else th.append(el("div",{class:"rrow"}, el("div",{class:"rk other",text:k||"note"}), el("div",{class:"rv",text:v})));
+  }
+  if(t.flags.length){ const fl=el("div",{class:"flags"}); for(const f of t.flags) fl.append(el("span",{class:"flag",title:f,text:"⚑ "+f.split(" — ")[0]})); th.append(fl); }
+  return th;
+}
+function unit(c,t){
+  const id="u-"+c.id+"-"+t.n; const k=key(c.id,t.n);
+  const box=el("div",{class:"unit",id});
+  const saved=mine[k];
+  if(saved){ paintSaved(box,saved); return box; }
+  let choice="";
+  const quick=el("div",{class:"quick"});
+  const btns=QUICK.map(([v,lab])=>{ const b=el("button",{type:"button",class:v,text:lab}); b.addEventListener("click",()=>{ choice=(choice===v)?"":v; btns.forEach(x=>x.classList.toggle("on",x.classList.contains(choice))); }); return b; });
+  btns.forEach(b=>quick.append(b));
+  const ta=el("textarea",{id:"ta-"+c.id+"-"+t.n,placeholder:"Your note on this turn — type or dictate. What is right or wrong in the reasoning, clinically or as a son?"});
+  const save=el("button",{class:"btn small",type:"button",text:"Save"}); const st=el("span",{class:"st"});
+  save.addEventListener("click",async()=>{
+    const text=ta.value.trim();
+    if(!choice&&!text){ st.textContent="Tap one of the three answers, or write a note."; return; }
+    if(!myName){ await askName(); if(!myName){ st.textContent="Please give your name first."; return; } }
+    save.disabled=true; st.textContent="Saving…";
+    const doc={token:TOKEN, call:c.id, turn:t.n, verdict:choice, text};
+    try{ const r=await api("/api/note", doc); mine[k]=Object.assign({}, doc, {saved_at:r.saved_at}); paintSaved(box,mine[k]); renderNav(); }
+    catch(e){ if(e.status===409){ st.textContent="Already saved on this turn."; await reload(); } else { save.disabled=false; st.textContent="Could not save ("+e.message+"). Try again in a moment."; } }
+  });
+  box.append(el("div",{class:"uh"}, el("span",{class:"ut",text:"Your note on this turn"}), el("span",{class:"st",text:"one answer per turn; saved notes are locked"})), quick, ta, el("div",{class:"row"}, save, st));
+  return box;
+}
+function paintSaved(box,d){
+  box.className="unit saved"; box.textContent="";
+  const v=QUICK.find(q=>q[0]===d.verdict);
+  box.append(el("div",{class:"uh"}, el("span",{class:"ut",text:"Saved · locked"}), v?el("span",{class:"verdict",text:v[1]}):null));
+  if(d.text) box.append(el("div",{class:"body",text:d.text}));
+}
+function renderCalls(){
+  const box=$("#calls"); box.textContent="";
+  for(const g of DATA.groups) for(const id of g.ids){ const c=byId[id];
+    const art=el("article",{class:"call",id:c.id});
+    art.append(el("div",{class:"callhead"},
+      el("div",{class:"cid",text:c.id}), el("h2",{text:LOTNAMES[c.lot]||c.lot}),
+      el("div",{class:"meta"}, el("span",{class:"badge",text:FAMILY[c.family]||c.family}), el("span",{class:"badge",text:"written by "+c.seat}), el("span",{text:c.time}), el("span",{text:unitsOf(c).length+" of his turns"+(c.summary.hung_up?" · she hangs up at the end":"")})),
+      el("div",{class:"dayline"}, el("span",{text:"What happened on Alex's side today: "}), document.createTextNode(c.day||"(nothing supplied)"))));
+    const turns=el("div",{class:"turns"});
+    for(const t of c.turns){
+      for(const r of t.runtime) turns.append(el("div",{class:"runtime"}, el("span",{text:"service: "+r})));
+      const tu=el("div",{class:"turn",id:"t-"+c.id+"-"+t.n});
+      tu.append(el("div",{class:"turnno",text:"TURN "+t.n+" OF "+c.turns.length}));
+      const momLine=el("div",{class:"line mom"}, el("span",{class:"who",text:"Mom"}), document.createTextNode(t.mom.replace("*click*","").trim()));
+      if(t.hangup) momLine.append(" ", el("span",{class:"hang",text:"— she hangs up"}));
+      tu.append(momLine);
+      if(t.think&&t.think.length) tu.append(reasoning(t));
+      if(t.alex!=null){ const al=el("div",{class:"line alex"}, el("span",{class:"who",text:c.family==="maria"?"Tony":"Alex"})); const chip=tokenChip(t.tags); if(chip) al.append(chip); al.append(document.createTextNode(t.alex)); tu.append(al); }
+      if(t.alex!=null&&!t.hangup) tu.append(unit(c,t));
+      turns.append(tu);
+    }
+    art.append(turns); box.append(art);
+  }
+}
+async function askName(){
+  const name=(prompt("Your name, as the team knows you (shown on your notes):")||"").trim();
+  if(!name) return;
+  try{ const r=await api("/api/name",{token:TOKEN,name}); myName=r.name; $("#whoami").textContent="Reviewing as "+myName; }catch(e){}
+}
+async function reload(){
+  try{ const me=await api("/api/me?token="+encodeURIComponent(TOKEN)); mine={}; for(const n of me.notes) mine[key(n.call,n.turn)]=n; myName=me.name||myName; }catch(e){ $("#dbstatus").textContent="Your saved notes could not be loaded ("+e.message+")."; }
+  renderCalls(); renderNav();
+  $("#whoami").textContent = myName ? "Reviewing as "+myName : "";
+}
+$("#jump").addEventListener("click",()=>{ const id=nextUndone(); if(id){ const e=document.getElementById(id); if(e){ e.scrollIntoView({block:"center"}); const ta=e.querySelector("textarea"); if(ta) ta.focus({preventScroll:true}); } } });
+$("#namebtn").addEventListener("click",askName);
+renderNav(); renderCalls();
+reload().then(()=>{ if(!myName) askName(); });
+
+</script>

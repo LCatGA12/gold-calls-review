@@ -1,0 +1,93 @@
+<title>Gold Calls Review — admin</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--ground:#F2F4F3;--surface:#fff;--ink:#1E2926;--muted:#5C6965;--line:#D8DEDB;--alex:#2B6E72;--good:#2F7D4F;--good-soft:#E3F1E8;--warn:#8F6210;--warn-soft:#FBEFD6;--bad:#A63A2E;--bad-soft:#F9E1DD;--mom:#8B5A2B;--mom-soft:#F4EBE1;--alex-soft:#E4F0EF}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:"Source Sans 3",system-ui,sans-serif;padding:32px 20px 80px;line-height:1.5}
+h1,h2{font-family:"Newsreader",Georgia,serif;font-weight:500;margin:0 0 8px}
+.wrap{max-width:1100px;margin:0 auto}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:22px}
+table{border-collapse:collapse;width:100%;font-size:.94rem;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.mono{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
+button,.btn{font:inherit;font-size:.9rem;font-weight:600;padding:6px 14px;border-radius:8px;border:1px solid var(--alex);background:var(--alex);color:#fff;cursor:pointer;text-decoration:none;display:inline-block}
+.quiet{background:var(--surface);color:var(--alex)}
+input{font:inherit;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.muted{color:var(--muted);font-size:.9rem}
+.v{font-family:"IBM Plex Mono",monospace;font-size:.76rem;padding:0 6px;border-radius:4px}
+.v.ok{background:var(--good-soft);color:var(--good)}.v.voice{background:var(--warn-soft);color:var(--warn)}.v.wrong{background:var(--bad-soft);color:var(--bad)}
+.note{border-left:3px solid var(--line);padding:6px 10px;margin:6px 0;font-size:.93rem}
+.note .ctx{color:var(--muted);font-size:.85rem}
+.note .ctx b{color:var(--ink);font-weight:600}
+details summary{cursor:pointer;font-weight:600;margin:10px 0 4px}
+</style>
+<div class="wrap">
+<h1>Gold Calls Review — admin</h1>
+<p class="muted">Progress by reviewer, links to hand out, and the CSV of everything. This page needs the admin key in its address; don't share it.</p>
+
+<div class="card">
+  <h2>Links</h2>
+  <div class="row"><input id="n" type="number" min="1" max="50" value="5" style="width:80px"> <input id="label" placeholder="label for this batch (e.g. clinical team, Sept)" style="min-width:280px"> <button id="mint">Make links</button></div>
+  <p class="muted">Each link is one reviewer. Send one per person; the first time they open it they type their name, and everything they save is kept against that link.</p>
+  <div id="links"></div>
+</div>
+
+<div class="card">
+  <h2>Progress</h2>
+  <div class="row" style="margin-bottom:8px"><a class="btn" id="csv" href="#">Download all notes (CSV)</a> <button class="quiet" id="refresh">Refresh</button> <span class="muted" id="totals"></span></div>
+  <div id="progress"></div>
+</div>
+
+<div class="card">
+  <h2>Notes, by call</h2>
+  <div id="notes" class="muted">Loading…</div>
+</div>
+</div>
+<script>
+const KEY = /*__KEY__*/null;
+const DATA = /*__DATA__*/null;
+const QUICK = {ok:"Fine", voice:"Not how a son would say it", wrong:"Wrong"};
+const $ = s => document.querySelector(s);
+const el = (t, a={}, ...k) => { const e=document.createElement(t); for (const [n,v] of Object.entries(a)) { if (n==="class") e.className=v; else if (n==="text") e.textContent=v; else e.setAttribute(n,v);} for (const c of k) if (c!=null) e.append(c); return e; };
+const turns = {}; for (const c of DATA.calls) for (const t of c.turns) turns[c.id+"#"+t.n] = t;
+const base = location.origin;
+$("#csv").href = "/admin/notes.csv?key="+encodeURIComponent(KEY);
+async function get(p){ const r=await fetch(p); if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); }
+async function progress(){
+  const d = await get("/admin/progress?key="+encodeURIComponent(KEY));
+  const box=$("#progress"); box.textContent="";
+  const tb=el("table",{}, el("thead",{}, el("tr",{}, el("th",{text:"Reviewer"}), el("th",{text:"Label"}), el("th",{text:"Link"}), el("th",{text:"Turns"}), el("th",{text:"Fine"}), el("th",{text:"Voice"}), el("th",{text:"Wrong"}), el("th",{text:"Last saved"}), el("th",{text:"Last seen"}))));
+  const body=el("tbody");
+  let done=0;
+  for(const r of d.reviewers){ done+=r.n; body.append(el("tr",{}, el("td",{text:r.name||"(not yet opened)"}), el("td",{text:r.label||""}), el("td",{class:"mono",text:base+"/r/"+r.token}), el("td",{text:r.n+" / "+d.total}), el("td",{text:r.ok}), el("td",{text:r.voice}), el("td",{text:r.wrong}), el("td",{class:"mono",text:(r.last||"").slice(0,16).replace("T"," ")}), el("td",{class:"mono",text:(r.last_seen||"").slice(0,16).replace("T"," ")}))); }
+  tb.append(body); box.append(tb);
+  $("#totals").textContent = d.reviewers.length+" links · "+done+" notes saved · "+d.total+" turns per reviewer";
+}
+async function notes(){
+  const rows = await get("/admin/notes?key="+encodeURIComponent(KEY));
+  const box=$("#notes"); box.textContent=""; box.className="";
+  if(!rows.length){ box.textContent="No notes yet."; box.className="muted"; return; }
+  const byCall={}; for(const r of rows){ (byCall[r.call]=byCall[r.call]||[]).push(r); }
+  for(const c of DATA.calls){ const list=byCall[c.id]; if(!list) continue;
+    const det=el("details",{}, el("summary",{text:c.id+" — "+c.lot+" ("+list.length+" notes)"}));
+    list.sort((a,b)=>a.turn-b.turn||String(a.name).localeCompare(String(b.name)));
+    for(const r of list){ const t=turns[r.call+"#"+r.turn]||{};
+      det.append(el("div",{class:"note"}, el("div",{}, el("b",{text:(r.name||r.token)+" · turn "+r.turn+" "}), r.verdict?el("span",{class:"v "+r.verdict,text:QUICK[r.verdict]}):null), r.text?el("div",{text:r.text}):null,
+        el("div",{class:"ctx"}, el("b",{text:"Mom: "}), document.createTextNode((t.mom||"").slice(0,220)), el("br"), el("b",{text:"Alex: "}), document.createTextNode((t.alex||"").slice(0,220)))));
+    }
+    box.append(det);
+  }
+}
+$("#mint").addEventListener("click", async()=>{
+  const n=parseInt($("#n").value)||1, label=$("#label").value.trim();
+  const r=await fetch("/admin/tokens?key="+encodeURIComponent(KEY)+"&n="+n+"&label="+encodeURIComponent(label),{method:"POST"}); const d=await r.json();
+  const box=$("#links"); box.textContent="";
+  const ta=el("textarea",{style:"width:100%;min-height:120px;font-family:IBM Plex Mono,monospace;font-size:.85rem",readonly:true});
+  ta.value=d.tokens.map(t=>base+"/r/"+t).join("\n"); box.append(ta);
+  progress();
+});
+$("#refresh").addEventListener("click",()=>{ progress(); notes(); });
+progress(); notes();
+</script>
